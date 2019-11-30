@@ -25,9 +25,6 @@ const User = BlogDB.define("user", {
     },
   },
   getterMethods: {
-    password() {
-      return "******";
-    },
     fullName() {
       return this.getDataValue("firstName") + " " + this.getDataValue("lastName");
     }
