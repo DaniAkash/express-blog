@@ -1,0 +1,17 @@
+<div class="jumbotron">
+  <h1 class="display-4">Hello, world!</h1>
+  <p class="lead">This is a blog created with Express, PostgreSQL & Sequelize</p>
+  <hr class="my-4">
+  <p>You can try logging in as user or an author</p>
+  <a class="btn btn-primary btn-lg" href="/user/login" role="button">User Login</a>
+  <a class="btn btn-primary btn-lg" href="/author/login" role="button">Author Login</a>
+</div>
+{{#each posts}}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{this.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{this.authorId}}</h6>
+    <p class="card-text">{{this.content}}</p>
+  </div>
+</div>
+{{/each}}

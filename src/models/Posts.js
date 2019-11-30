@@ -10,7 +10,10 @@ const Post = BlogDB.define("post", {
   },
   title: Sequelize.STRING,
   content: Sequelize.TEXT,
-  visible: Sequelize.BOOLEAN,
+  visible: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   authorId: {
     type: Sequelize.INTEGER,
     references: {
@@ -20,16 +23,16 @@ const Post = BlogDB.define("post", {
   }
 });
 
-const PostSync = ({ force = false } = { force: false }) => {
-  Post.sync({ force })
+const PostSync = ({ force = false, author = {} } = { force: false }) => {
+  Post.sync({force})
     .then(() => {
-      const testPost = {
-        title: "sample post",
-        content: "My first blog post",
-        visible: false,
+      const postData = {
+        title: "My sample Post",
+        content: "sample post data",
+        authorId: author.id,
       };
 
-      Post.create(testPost)
+      Post.create(postData)
         .then(result => {
           console.log(result.get());
         })
